@@ -42,11 +42,15 @@ function Header() {
           </Typography>
           {
             window.location.pathname === "/home" &&
-            <Button color="inherit" onClick={(e)=>{switchWindowLocation('/sites')}}>Sites</Button>
+            <Button color="inherit" onClick={(e) => { switchWindowLocation('/sites') }}>Sites</Button>
           }
           {
             window.location.pathname === "/sites" &&
-            <Button color="inherit" onClick={(e)=>{switchWindowLocation('/home')}}>Home</Button>
+            <Button color="inherit" onClick={(e) => { switchWindowLocation('/home') }}>Home</Button>
+          }
+          {
+           (window.location.pathname === "/home"  || window.location.pathname === "/sites") &&
+            <Button color="inherit" onClick={(e) => { switchWindowLocation('/') }}>Log out</Button>
           }
         </Toolbar>
       </AppBar>

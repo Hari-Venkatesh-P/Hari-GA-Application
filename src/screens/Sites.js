@@ -11,6 +11,7 @@ import Header from "../components/Header"
 import '../styles/loginStyles.css';
 import { useGAPageViewHook } from "../hooks/GAhooks";
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         ...theme.typography.button,
@@ -24,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 function HomeScreen(props) {
-    const classes = useStyles();
 
+    const classes = useStyles();
     useGAPageViewHook(window.location.pathname);
 
     return (

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import {useSelector} from "react-redux"
 
 import Header from "../components/Header"
 import '../styles/loginStyles.css';
 import {useGAPageViewHook} from "../hooks/GAhooks";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-function HomeScreen(props) {
+function HomeScreen() {
+  
   const classes = useStyles();
-
+  const profileInfo = useSelector(state=> state.profileReducer.profile)
   useGAPageViewHook(window.location.pathname);
 
   return (
@@ -31,13 +33,12 @@ function HomeScreen(props) {
         justify="center"
         style={{ minHeight: '100vh' }}
       > {
-          props.location.state?.profileObj &&
+          profileInfo.name &&
           <React.Fragment>
-            <div className={classes.root}>Name  : {props.location.state?.profileObj?.name}</div>
-            <div className={classes.root}>Email  : {props.location.state?.profileObj?.email}</div>
+            <div className={classes.root}>Name  : {profileInfo.name}</div>
+            <div className={classes.root}>Email  : {profileInfo.email}</div>
           </React.Fragment>
         }
-
         <Grid item xs={5}></Grid>
       </Grid>
     </div>

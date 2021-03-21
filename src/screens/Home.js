@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Header from "../components/Header"
 import '../styles/loginStyles.css';
-
+import {useGAPageViewHook} from "../hooks/GAhooks";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
 function HomeScreen(props) {
   const classes = useStyles();
-  useEffect(() => {
-    console.log(props.location.state)
-  })
+
+  useGAPageViewHook(window.location.pathname);
+
   return (
     <div>
       <Header></Header>

@@ -4,10 +4,14 @@ import { useHistory } from "react-router";
 
 import Header from "../components/Header"
 import '../styles/loginStyles.css';
+import {useGAPageViewHook} from "../hooks/GAhooks";
 
 function LoginScreen() {
 
     const history = useHistory();
+
+    useGAPageViewHook(window.location.pathname);
+
 
     const onSuccessResponseGoogle = (response) => {
         history.push({

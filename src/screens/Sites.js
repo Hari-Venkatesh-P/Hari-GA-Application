@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 import Header from "../components/Header"
 import '../styles/loginStyles.css';
-import { useGAPageViewHook } from "../hooks/GAhooks";
+import { useGAPageViewHook,useGAEventTracker } from "../hooks/GAhooks";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +28,12 @@ function HomeScreen(props) {
 
     const classes = useStyles();
     useGAPageViewHook(window.location.pathname);
+    const eventTracker = useGAEventTracker("External Links")
+    
+    const switchPage = (url,action) => {
+        eventTracker(action,url)
+        window.open(url)
+    };
 
     return (
         <div>
@@ -46,7 +52,7 @@ function HomeScreen(props) {
                         color="primary"
                         className={classes.button}
                         startIcon={<GitHubIcon />}
-                        onClick={()=>{window.location.assign("https://github.com/")}}
+                        onClick={()=>{switchPage("https://github.com/","GITHUB VIEW EVENT")}}
                     >
                         Youtube
                     </Button>
@@ -55,7 +61,7 @@ function HomeScreen(props) {
                         color="primary"
                         className={classes.button} 
                         startIcon={<YouTubeIcon />}
-                        onClick={()=>{window.location("https://www.youtube.com/")}}
+                        onClick={()=>{switchPage("https://www.youtube.com/","YOUTUBE VIEW EVENT")}}
                     >
                         GitHub
                     </Button>
